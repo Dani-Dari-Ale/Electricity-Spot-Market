@@ -28,6 +28,7 @@ def obj_function(q,a,b):
         f += a[i]*q[i] + b[i]*q[i]**2
     return f
 
+
 #restricciones
 def conditionals(m:GEKKO,L:list,assignVar_q:list,assignVar_t:list,D:list):
     count = len(L)
@@ -41,6 +42,7 @@ def assignVar_q(m:GEKKO,count:int):
     for i in range(count):
         varList_q.append(m.Var(lb=0))
     return varList_q
+
 
 #Generacion de matriz con las t_ij donde (i,j) es una arista de L a partir de la matriz L
 def assignVar_t(m:GEKKO,L:list):
@@ -56,6 +58,7 @@ def assignVar_t(m:GEKKO,L:list):
         varList_t.append(t_row)
     return varList_t
 
+
 # energia que sale del nodo i
 def sum_T_Out(node,assignVar_t,L):
     count = len(L)
@@ -66,6 +69,7 @@ def sum_T_Out(node,assignVar_t,L):
             tvar = assignVar_t[node][j]
             sum += tvar + (termicalLoss / 2) * tvar**2
     return sum
+
 
 #  energia que entra al nodo i
 def sum_T_In(node,assignVar_t,L):

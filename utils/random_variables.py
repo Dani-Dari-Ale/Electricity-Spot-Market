@@ -2,69 +2,97 @@ import random as r
 import math
 
 # continuas
-def uniform(a,b):
-    U = r.random()
-    return (b-a)*U + a
+class uniform:
+    def __init__(self,a,b):
+        self.a = a
+        self.b = b
 
-
-def exponential(_lambda):
-    U = r.random()
-    return -(1/_lambda)*math.log(U)
-
-
-def gamma(n,_lambda):
-    Un = math.prod([r.random() for _ in range(n)])
-    return -(1/_lambda)*math.log(Un)
-
-
-def normal(miu, o_2):
-    while True:
-        Y = exponential(1)
+    def get(self):
         U = r.random()
-        if U <= math.exp((-1/2)*(Y-1)**2): break
-    
-    U = r.random()
-    Z = Y if U < 0.5 else -Y
+        return (self.b-self.a)*U + self.a
 
-    # Z = (X - miu)/o ~ N(0,1) => X = Zo + miu ~ N(miu,o^2)
-    return Z*math.sqrt(o_2) + miu
+class exponential:
+    def __init__(self, _lambda):
+        self._lambda = _lambda
+
+    def get(self):
+        U = r.random()
+        return -(1/self._lambda)*math.log(U)
+
+class gamma:
+    def __init__(self,n,_lambda):
+        self.n = n
+        self._lambda = _lambda
+
+    def get(self):
+        Un = math.prod([r.random() for _ in range(self.n)])
+        return -(1/self._lambda)*math.log(Un)
+
+class normal:
+    def __init__(self,mu,o_2):
+        self.mu = mu
+        self.o_2 = o_2
+
+    def get(self):
+        exp = exponential(1)
+        while True:
+            Y = exp.get()
+            U = r.random()
+            if U <= math.exp((-1/2)*(Y-1)**2): break
+        
+        U = r.random()
+        Z = Y if U < 0.5 else -Y
+
+        # Z = (X - miu)/o ~ N(0,1) => X = Zo + miu ~ N(miu,o^2)
+        return Z*math.sqrt(self.o_2) + self.mu
 
 
 # discretas
-def Bin(n,p):
-    X = 0
-    for _ in range(n):
-        U = r.random()
-        if U <= p:
-            X += 1
-        else: X += 0
-    return X
+class binary:
+    def __init__(self,n,p):
+        self.n = n
+        self.p = p
 
-def Geo(p):
-    U = r.random()
-    return math.ceil(math.ln(U) / math.ln(1-p))
+    def get(self):
+        X = 0
+        for _ in range(self.n):
+            U = r.random()
+            if U <= self.p:
+                X += 1
+            else: X += 0
+        return X
+
+class geometric:
+    def __init__(self,p):
+        self.p = p
+
+    def get(self):
+        U = r.random()
+        return math.ceil(math.ln(U) / math.ln(1-self.p))
 
 
 # por escenarios
-def escenaries(probabilities, demands):
-    def order(p,d):
-        for i in range(len(p)):
-            for j in range(i+1,len(p)):
-                if p[i] > p[j]:
-                    p[i],p[j] = p[j],p[i]
-                    d[i],d[j] = d[j],d[i]
+class escenaries:
+    def __init__(self, probs, demands):
+        self.probabilities = probs
+        self.demands = demands
+        self.order()
 
-    order(probabilities, demands)
+    def order(self):
+            for i in range(len(self.probabilities)):
+                for j in range(i+1,len(self.probabilities)):
+                    if self.probabilities[i] > self.probabilities[j]:
+                        self.probabilities[i],self.probabilities[j] = self.probabilities[j],self.probabilities[i]
+                        self.demands[i],self.demands[j] = self.demands[j],self.demands[i]
 
-    u = r.random()
-    sum_p, i = 0, len(probabilities)
+    def get(self):
+        u = r.random()
+        sum_p, i = 0, len(self.probabilities)
 
-    # recorre el array en reverso, comenzado con la
-    # probabilidad mayor
-    while i >= 0:
-        i -= 1
-        sum_p += probabilities[i]
-        if u <= sum_p:
-            return demands[i]
-    
-escenaries ([0.3, 0.2, 0.5, 0.1],[0,1,2,3])
+        # recorre el array en reverso, comenzado con la
+        # probabilidad mayor
+        while i >= 0:
+            i -= 1
+            sum_p += self.probabilities[i]
+            if u <= sum_p:
+                return self.demands[i]
