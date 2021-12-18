@@ -15,6 +15,5 @@ b = [1,4,4,4]
 D = [0,0,0,1]
 
 
-
 if __name__ == "__main__":
     solveModel(N,L,a,b,D)
