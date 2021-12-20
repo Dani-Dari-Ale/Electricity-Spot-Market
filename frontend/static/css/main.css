@@ -1,0 +1,10 @@
+body {
+  background-color: gray;
+  color: white;
+  margin: 0 auto;
+}
+
+.form_class {
+  display: inline-block;
+  justify-content: center;
+}
