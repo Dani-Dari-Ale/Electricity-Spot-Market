@@ -1,9 +1,5 @@
 from enum import Enum
 from random_variables import *
-<<<<<<< HEAD
-=======
-
->>>>>>> 4bed6e120b2c0a6bf5ed22b0ce6d4eb99163c7e8
 
 class distribution(Enum):
     UNIFORM = 'uniform',
@@ -42,10 +38,5 @@ def demand(_distribution, params, N):
     demands = []
     for _ in range(N):
         demands.append(dist.get())
-<<<<<<< HEAD
-        
-    return demands
-=======
 
     return demands
->>>>>>> 4bed6e120b2c0a6bf5ed22b0ce6d4eb99163c7e8
