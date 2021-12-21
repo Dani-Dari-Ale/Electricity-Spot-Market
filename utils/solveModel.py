@@ -11,12 +11,8 @@ def solveModel(N,L,a,b,D):
     m.Obj(obj_function(vars_q,a,b))
     m.options.IMODE = 3 # Steady state optimization
     m.solve()
-    for q in vars_q:
-        print(f"una variable dio {q.VALUE}")
-    for list_t in vars_t:
-        for t in list_t:
-            if(not isinstance(t,int)):
-                print(F"una variable dio {t.VALUE}")
+
+    return vars_q, vars_t
 
 
 

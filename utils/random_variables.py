@@ -81,7 +81,7 @@ class geometric:
 
 # por escenarios
 class escenaries:
-    def __init__(self, probs, demands):
+    def __init__(self, demands, probs):
         self.probabilities = probs
         self.demands = demands
         self.order()

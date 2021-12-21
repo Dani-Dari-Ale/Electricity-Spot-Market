@@ -1,5 +1,5 @@
 from enum import Enum
-from random_variables import *
+from utils.random_variables import *
 
 class distribution(Enum):
     UNIFORM = 'uniform',
@@ -8,7 +8,7 @@ class distribution(Enum):
     NORMAL = 'normal',
     BINARY = 'binary',
     GEOMETRIC = 'geometric',
-    ESCENARIES = 'escenaries'
+    ESCENARIES = 'scenaries'
 
 
 # generacion de la demanda
@@ -33,7 +33,7 @@ def demand(_distribution, params, N):
         dist = geometric(params[0])
 
     else:
-        return escenaries(params[0], params[1]).get()
+        dist = escenaries(params[0], params[1])
 
     demands = []
     for _ in range(N):
