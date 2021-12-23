@@ -4,55 +4,52 @@
         <meta charset="UTF-8">
         <title> App</title>
         <link rel="stylesheet" href="{{url_for('static', filename='css/main.css')}}">
+        <link rel="stylesheet" href="{{url_for('static', filename='css/bootstrap.min.css')}}">
     </head>
     <body>
-        <h4> Welcome to my app</h4>
+        <div class="all">
+          <h4> Welcome to my app</h4>
+          <form action="" method="POST" class="form">
+              <input type="number" id="n" name="n" value="1" /> N <br />
+              
+              <input type="button" id="btn_create" value="Create matrix" onclick="create()"/> <br />
+          
+              <div id="a_matrix" aria-required="true"></div>  <br />
+              <div id="b_matrix" aria-required="true"></div> <br />
+              <div id="l_matrix" aria-required="true"></div> <br />
 
-        <form action="" method="POST" class="form_class">
-            <input type="number" id="n" name="n" value="1" /> N <br />
-            
-            <input type="button" id="btn_create" value="create" onclick="create()"/> <br />
-        
-            <div id="a_matrix" aria-required="true"></div>  <br />
-            <div id="b_matrix" aria-required="true"></div> <br />
-            <div id="l_matrix" aria-required="true"></div> <br />
+              <label for="variable">Choose a variable:</label>
+              <select name="variable" id="variable" value="" onclick="create_params()">
+                <optgroup label="Ninguna">
+                  <option value="none">ninguna</option>
+                <optgroup label="Discreta">
+                  
+                  <option value="binary">binomial</option>
+                  <option value="geometric">geometrica</option>
+                </optgroup>
+                <optgroup label="Continua">
+                  <option value="uniform">uniforme</option>
+                  <option value="exponential">exponencial</option>
+                  <option value="gamma">gamma</option>
+                  <option value="normal">normal</option>
+                </optgroup>
+                <optgroup label="Escenario">
+                  <option value="scenaries">escenario
+                  </option>
+                </optgroup>
+              </select>
+              
+              <div id="params"></div> <br />
+              <div id="intervals"></div> <br />
 
-            <label for="variable">Choose a variable:</label>
-            <select name="variable" id="variable" value="" onclick="create_params()">
-              <optgroup label="Discreta">
-                <option value="binary">ninguna</option>
-                <option value="binary">binomial</option>
-                <option value="geometric">geometrica</option>
-              </optgroup>
-              <optgroup label="Continua">
-                <option value="uniform">uniforme</option>
-                <option value="exponential">exponencial</option>
-                <option value="gamma">gamma</option>
-                <option value="normal">normal</option>
-              </optgroup>
-              <optgroup label="Escenario">
-                <option value="scenaries">escenario
-                </option>
-              </optgroup>
-            </select>
-            
-            <div id="params"></div> <br />
-            <div id="intervals"></div> <br />
+              <input type="submit" value="Get results">
+              
 
-            <input type="submit" value="send">
-            
-            <div id="results_q">
-              <h1>Results q: {{vars_q}}</h1>
-            </div> <br />
-            
-            <div id="results_t">
-              <h1>Results t: {{vars_t}}</h1>
-            </div> <br />
-
-        </form>
-        
-
+          </form>
+        </div>
+      <script src="{{url_for('static', filename='js/bootstrap.bundle.min.js')}}"></script>
       <script src="{{url_for('static', filename='js/file.js')}}"></script>
+
     </body>
 
 </html>

@@ -6,10 +6,10 @@ function create() {
   create_matrix(n, n, "l_matrix");
 }
 
-function create_matrix(row, col, matrix) {
+function create_matrix(row, col, matrix_name) {
   var table = '<table border="0">';
 
-  table += matrix;
+  table += matrix_name;
   table += "<tr><td></td>";
   for (j = 0; j < col; j++) {
     table += "<td>" + (j + 1) + "</td>";
@@ -23,7 +23,7 @@ function create_matrix(row, col, matrix) {
       table +=
         "<td>" +
         '<input type="text" aria-required="true" value="-1" size="1" name="' +
-        matrix +
+        matrix_name +
         i +
         j +
         '">' +
@@ -32,7 +32,7 @@ function create_matrix(row, col, matrix) {
     table += "</tr>";
   }
   table += "</table>";
-  document.getElementById(matrix).innerHTML = table;
+  document.getElementById(matrix_name).innerHTML = table;
 }
 
 function create_params() {

@@ -1,7 +1,10 @@
+import webbrowser
+import pandas as pd
 
-from flask import Flask
-from flask import request
-from flask import render_template
+#df2 = pd.read_csv("ejemplo2.csv", header=None)
+
+
+from flask import Flask, redirect, request, render_template
 
 from utils.solveModel import solveModel
 from utils.demand import demand
@@ -10,9 +13,9 @@ from visual.flask import *
 
 app = Flask(__name__)
 
+
 @app.route('/', methods=["GET", "POST"])
 def index():
-    print(request.form)
 
     if request.method == 'POST':
 
@@ -20,17 +23,28 @@ def index():
 
         params = create_demand(request, variable)
 
-        print(params)
         d = demand(variable, params, n)
 
-        vars_q, vars_t = solveModel(n, l, a, b, d)
+        try:
+            vars_q, vars_t = solveModel(n, l, a, b, d)
 
-        print(vars_q)
-        print(vars_t)
-        return render_template('index.html', vars_q=vars_q, vars_t=vars_t)
+        except:
+            vars_q = None
+            vars_t = None
 
-    return render_template('index.html', vars_q=[], vars_t=[])
+        return render_template('results.html', vars_q=vars_q, vars_t=vars_t, n=n, l=l, a=a, b=b, variable=variable)
+
+    return render_template('index.html')
+
+
+@app.errorhandler(404)
+def page_not_found(error):
+    return render_template("pagina_no_encontrada.html"), 404
+
 
 if __name__ == '__main__':
     # el debug en true es para poder recargar los cambios
-    app.run(debug=True, port=3000)
+    _host = 'localhost'
+    _port = 3008
+    webbrowser.open(f'http://{_host}:{_port}', new=2)
+    app.run(host=_host, port=_port, debug=True)
