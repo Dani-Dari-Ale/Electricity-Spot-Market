@@ -1,15 +1,14 @@
+from visual.flask import *
+from utils.demand import demand
+from utils.solveModel import solveModel
+from flask import Flask, redirect, request, render_template
 import webbrowser
 import pandas as pd
 
-#df2 = pd.read_csv("ejemplo2.csv", header=None)
+df = pd.read_csv("entry.csv")
 
+print(df)
 
-from flask import Flask, redirect, request, render_template
-
-from utils.solveModel import solveModel
-from utils.demand import demand
-
-from visual.flask import *
 
 app = Flask(__name__)
 
@@ -45,6 +44,6 @@ def page_not_found(error):
 if __name__ == '__main__':
     # el debug en true es para poder recargar los cambios
     _host = 'localhost'
-    _port = 3008
+    _port = 3006
     webbrowser.open(f'http://{_host}:{_port}', new=2)
     app.run(host=_host, port=_port, debug=True)
