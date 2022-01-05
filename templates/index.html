@@ -2,13 +2,23 @@
 <html lang="en">
     <head>
         <meta charset="UTF-8">
-        <title> App</title>
-        <link rel="stylesheet" href="{{url_for('static', filename='css/main.css')}}">
-        <!-- <link rel="stylesheet" href="{{url_for('static', filename='css/bootstrap.min.css')}}"> -->
+        <title> ESM</title>
+        <link rel="stylesheet" href="{{url_for('static', filename='css/main2.css')}}">
+        <link rel="stylesheet" href="{{url_for('static', filename='css/bootstrap.min.css')}}">
+        <link rel="shortcut icon" href="{{url_for('static', filename='images/1.ico')}}">
     </head>
-    <body>
+    <body background="{{url_for('static', filename='images/1.jpg')}}">
+      <header>
+        <div class="header">
+          <a href="#" class="logo">Index</a>
+          <div class="header-right">
+              <form action="/" method="get"><a href="/">Home</a></form>
+              <form action="/index" method="get"><a class="active" href="/index">Index</a></form>
+              <form action="/about" method="get"><a href="/about">About</a></form>
+          </div>
+        </div> 
+      </header>
         <div class="all">
-          <h4> Welcome to my app</h4>
           <form action="" method="POST" class="form">
               <input type="number" required="true" min="1" id="n" name="n" placeholder="N" /> N <br />
               

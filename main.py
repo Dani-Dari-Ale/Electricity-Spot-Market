@@ -7,13 +7,18 @@ import pandas as pd
 
 df = pd.read_csv("entry.csv")
 
-print(df)
+# print(df)
 
 
 app = Flask(__name__)
 
 
-@app.route('/', methods=["GET", "POST"])
+@app.route('/', methods=["GET"])
+def home():
+    return render_template('home.html')
+
+
+@app.route('/index', methods=["GET", "POST"])
 def index():
 
     if request.method == 'POST':
@@ -36,6 +41,11 @@ def index():
     return render_template('index.html')
 
 
+@app.route('/about', methods=["GET"])
+def about():
+    return render_template('about.html')
+
+
 @app.errorhandler(404)
 def page_not_found(error):
     return render_template("pagina_no_encontrada.html"), 404
@@ -44,6 +54,6 @@ def page_not_found(error):
 if __name__ == '__main__':
     # el debug en true es para poder recargar los cambios
     _host = 'localhost'
-    _port = 3006
+    _port = 3000
     webbrowser.open(f'http://{_host}:{_port}', new=2)
     app.run(host=_host, port=_port, debug=True)

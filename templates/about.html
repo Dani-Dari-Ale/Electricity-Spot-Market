@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title> ESM</title>
+        <link rel="stylesheet" href="{{url_for('static', filename='css/main2.css')}}">
+        <link rel="shortcut icon" href="{{url_for('static', filename='images/1.ico')}}">
+    </head>
+
+    <body background="{{url_for('static', filename='images/2.jpg')}}">
+        <header>
+            <div class="header">
+              <a href="#" class="logo">About</a>
+              <div class="header-right">
+                  <form action="/" method="get"><a href="/">Home</a></form>
+                  <form action="/index" method="get"><a href="/index">Index</a></form>
+                  <form action="/about" method="get"><a class="active" href="/about">About</a></form>
+              </div>
+            </div> 
+        </header>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Est deserunt assumenda et alias provident. Perferendis dolorem quaerat tempore enim fugiat aliquid non tenetur a quod, rerum eligendi ipsum, sit quia!</p>
+    </body>
+</html>
