@@ -51,3 +51,19 @@ def create_demand(request, variable):
         print("")
 
     return params
+
+
+def create_demand_excel(variable, params1, params2):
+    params = []
+
+    if variable == 'uniform' or variable == 'gamma' or variable == 'normal' or variable == 'binary' or variable == 'scenaries':
+        params.append(params1)
+        params.append(params2)
+
+    elif variable == 'exponential' or variable == 'geometric':
+        params.append(params1)
+
+    else:
+        print("")
+
+    return params

@@ -19,9 +19,11 @@
         </div> 
       </header>
         <div class="all">
-          <form action="" method="POST" class="form">
-              <input type="number" required="true" min="1" id="n" name="n" placeholder="N" /> N <br />
+          
+          <form action="/index" method="POST" class="form">
+              <input type="number"  required="true" min="1" id="n" name="n" placeholder="N" /> N <br />
               
+              <input type="text" hidden id="excel1" name="excel" value="false" /> <br />
               <input type="button" id="btn_create" value="Create matrix" onclick="create()"/> <br />
           
               <div id="a_matrix" required="true"></div>  <br />
@@ -59,7 +61,15 @@
               
 
           </form>
+          
         </div>
+        <form action="/index" method="POST" class="form">
+          <input type="text" hidden id="excel" name="excel" value="false" /> <br />
+          <button type="submit" class="formsubmit" onclick="check_results_from_excel()">
+            Get results from excel
+          </button>
+        </form>
+
       <script src="{{url_for('static', filename='js/bootstrap.bundle.min.js')}}"></script>
       <script src="{{url_for('static', filename='js/file.js')}}"></script>
 

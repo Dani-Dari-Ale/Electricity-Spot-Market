@@ -98,3 +98,8 @@ function check_results(event) {
     return false;
   }
 }
+
+function check_results_from_excel() {
+  document.getElementById("excel").value = "true";
+  console.log("Se cambio el estado del excel");
+}

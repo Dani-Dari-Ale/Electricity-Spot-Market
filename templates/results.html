@@ -35,13 +35,9 @@
                 <h4>Variable: {{variable}}</h4>
               </div> <br />
               
-              <div id="results_q">
-                  <h3>Results q: {{vars_q}}</h3>
-              </div> <br />
+              <div id="results_q"></div> <br />
               
-              <div id="results_t">
-                <h3>Results t: {{vars_t}}</h3>
-              </div> <br />
+              <div id="results_t"></div> <br />
 
        
         </div>
@@ -49,10 +45,12 @@
       <script src="{{url_for('static', filename='js/file.js')}}"></script>
       <script>
         var n = {{n}}
-        var l = {{l}}
         var a = {{a}}
         var b = {{b}}
-        
+        var l = {{l}}
+
+        var vars_q = {{vars_q}}
+        var vars_t = {{vars_t}}
         
         show_results(n,a,b,l);
 
@@ -61,6 +59,17 @@
             draw_matrix("a_matrix", a, 1, n);
             draw_matrix("b_matrix", b, 1, n);
             draw_matrix("l_matrix", l, n, n);
+            
+            
+            if(vars_q.length == 0 || vars_t.length == 0){
+              document.getElementById("results_q").innerHTML = "<h3> results_q: Undefined </h3>";
+              document.getElementById("results_t").innerHTML = "<h3> results_t: Undefined </h3>";
+            }
+            else{
+              draw_matrix("results_q", vars_q, 1, n);
+              draw_matrix("results_t", vars_t, n, n);
+            }
+            
           }
 
         function draw_matrix(matrix_name, matrix, row, col) {
