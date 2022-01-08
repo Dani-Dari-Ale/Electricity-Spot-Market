@@ -136,7 +136,7 @@ Por tanto podemos concluir que GEKKO es una biblioteca de Python orientada a obj
 
 Para la resoluci\'on del modelo, como afirmamos en la secci\'on anterior, nos auxiliamos de la librer\'ia GEKKO de python. La implementaci\'on se puede encontrar en \texttt{utils/solveModel.py}.
 
-Primeramente creamos un objeto de tipo GEKKO que consistir\'a nuestro modelo y, posteriormente vamos a\~nadiendo a este las diferentes variables, restricciones y la funci\'on objetivo. Guardamos los $q_i$ en una lista de taman\~no $N$, estos son objetos de tipo \textsf{GEKKO.Var} con l\'imite inferior igual a $0$. Los $t_{ij}$ se crean de forma an\'aloga y los guardamos en una matriz de $NxN$ que contiene la variable de GEKKO si $<i,j> \in L$ y $-1$ en caso contrario. 
+Primeramente creamos un objeto de tipo GEKKO que consistir\'a nuestro modelo y, posteriormente vamos a\~nadiendo a este las diferentes variables, restricciones y la funci\'on objetivo. Guardamos los $q_i$ en una lista de tama\~no $N$, estos son objetos de tipo \textsf{GEKKO.Var} con l\'imite inferior igual a $0$. Los $t_{ij}$ se crean de forma an\'aloga y los guardamos en una matriz de $NxN$ que contiene la variable de GEKKO si $<i,j> \in L$ y $-1$ en caso contrario. 
 
 Desp\'ues de a\~nadir las variables a nuestro modelo, le agregamos las restricciones. En este caso, como definimos nuestras variables no negativas, solo nos queda adicionar la restricci\'on de satisfacci\'on de la demanda. Recordemos que es una restricci\'on para cada nodo, por tanto tenemos que a\~nadir $N$ restricciones. Con ayuda de \textsf{GEKKO.Equation} creamos las restricciones tal y como se definieron en la secci\'on II. Por \'ultimo, le agregamos la funci\'on objetivo al modelo como se expuso en dicha secci\'on.
 
