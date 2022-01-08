@@ -9,6 +9,8 @@ import webbrowser
 _host = 'localhost'
 _port = 3000
 
+a= True
+
 
 # APP
 app = Flask(__name__)
@@ -60,7 +62,7 @@ def page_not_found(error):
 
 
 if __name__ == '__main__':
-    # el debug en true es para poder recargar los cambios
-
     webbrowser.open(f'http://{_host}:{_port}', new=2)
-    app.run(host=_host, port=_port, debug=True)
+
+    # el debug en true es para poder recargar los cambios
+    app.run(host=_host, port=_port, debug=False)
