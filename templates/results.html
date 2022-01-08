@@ -22,7 +22,7 @@
       </header>
         
       <div class="item active testing-caption">
-        <div class="form">
+        <div class="form-result">
                 <div id="n">
                     <h2>N: {{n}}</h2>
                 </div>  <br />
@@ -86,7 +86,7 @@
             else list = matrix[i]
 
             for (j = 0; j < col; j++) {
-              table += "<td>" + '<input type="text" readonly value="'+ list[j] + '" size="1">' + "</td>";
+              table += "<td>" + '<input type="text" readonly value="'+ list[j] + '" size="10">' + "</td>";
             }
             table += "</tr>";
             
