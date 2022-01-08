@@ -7,9 +7,9 @@ Para ejecutar el proyecto debe tener instalado python version 3 o superior.
 
 Luego instalar los requerimientos necesarios ejecutando: 
 
-$ pip install -r requirements.txt
+$ pip3 install -r requirements.txt
 
 
 Finalmente ejecute la aplicacion escribiendo 
 
-$ python main.py
+$ python3 main.py

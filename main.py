@@ -7,7 +7,7 @@ import webbrowser
 
 # VARIABLES
 _host = 'localhost'
-_port = 9000
+_port = 3000
 
 
 # APP
@@ -63,4 +63,4 @@ if __name__ == '__main__':
     # el debug en true es para poder recargar los cambios
 
     webbrowser.open(f'http://{_host}:{_port}', new=2)
-    app.run(host=_host, port=_port, debug=True)
+    app.run(host=_host, port=_port, debug=False)

@@ -1,6 +1,6 @@
 from utils.demand import demand
 from utils.solveModel import solveModel
-from utils.file_work import write_outpu
+from utils.file_work import write_output
 
 
 def find_val_to_model(request):
