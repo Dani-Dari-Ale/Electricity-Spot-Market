@@ -1,9 +1,7 @@
 from utils.flask import *
-from utils.demand import demand
-from utils.solveModel import solveModel
-from utils.file_work import get_values_from_excel, write_output
+from utils.file_work import get_values_from_excel
 
-from flask import Flask, redirect, request, render_template
+from flask import Flask, request, render_template
 import webbrowser
 
 
