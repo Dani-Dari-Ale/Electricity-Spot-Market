@@ -29,7 +29,7 @@ class gamma:
         self._lambda = _lambda
 
     def get(self):
-        Un = math.prod([r.random() for _ in range(self.n)])
+        Un = math.prod([r.random() for _ in range(int(self.n))])
         return -(1/self._lambda)*math.log(Un)
 
 
@@ -61,7 +61,7 @@ class binary:
 
     def get(self):
         X = 0
-        for _ in range(self.n):
+        for _ in range(int(self.n)):
             U = r.random()
             if U <= self.p:
                 X += 1

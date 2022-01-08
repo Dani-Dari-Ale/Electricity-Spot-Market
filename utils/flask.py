@@ -1,3 +1,9 @@
+from utils.demand import demand
+from utils.solveModel import solveModel
+from utils.file_work import write_output
+
+from flask import Flask, redirect, request, render_template
+
 
 def find_val_to_model(request):
     n = request.form['n']
@@ -67,3 +73,17 @@ def create_demand_excel(variable, params1, params2):
         print("")
 
     return params
+
+
+def get_results(n, a, b, l, variable, params):
+    d = demand(variable, params, n)
+
+    try:
+        vars_q, vars_t = solveModel(n, l, a, b, d)
+    except:
+        vars_q = []
+        vars_t = []
+
+    write_output(n, a, b, l, variable, vars_q, vars_t)
+
+    return vars_q, vars_t

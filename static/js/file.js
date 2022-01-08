@@ -5,8 +5,10 @@ function create() {
     create_matrix(1, n, "a_matrix");
     create_matrix(1, n, "b_matrix");
     create_matrix(n, n, "l_matrix");
+
+    document.getElementById("created_matrix").value = "true";
   } else {
-    alert("Elija un N mayor que 0");
+    alert("Shoose N bigger than 0");
   }
 }
 
@@ -76,30 +78,45 @@ function create_params() {
     document.getElementById("params").innerHTML = params;
   } else if (variable == "scenaries") {
     params =
-      '<input type="text" required="true" size="1" placeholder="intervalos" id="n_intervals" name="n_intervals">';
+      '<input type="text" required="true" size="1" placeholder="intervals" id="n_intervals" name="n_intervals">';
     params +=
-      '<input type="button" required="true" id="btn_create_intervals" value="crear intervalos" onclick="crear_intervalos()"/>';
+      '<input type="button" required="true" id="btn_create_intervals" value="create intervals" onclick="create_intervals(event)"/>';
     document.getElementById("params").innerHTML = params;
   }
 }
 
-function crear_intervalos() {
+function create_intervals(event) {
   var n_intervals = document.getElementById("n_intervals").value;
-  console.log(n_intervals);
+  if (n_intervals == "") {
+    event.preventDefault();
+    alert("Shoose a number bigger than 0 for intervals");
+    return false;
+  }
   create_matrix(2, n_intervals, "intervals");
+  document.getElementById("scenarie_val").value = true;
 }
 
-function check_results(event) {
+function parse_data(event) {
   var variable = document.getElementById("variable").value;
+  var created_matrix = document.getElementById("created_matrix").value;
+  var scenarie_val = document.getElementById("scenarie_val").value;
 
   if (variable == "none") {
     event.preventDefault();
-    alert("Establezca un tipo de variable");
+    alert("Set variable type");
+    return false;
+  } else if (created_matrix == "false") {
+    event.preventDefault();
+    alert("Create matrix A, B and L");
+    return false;
+  } else if (variable == "scenaries" && scenarie_val == "false") {
+    event.preventDefault();
+    alert("Create intervals");
     return false;
   }
 }
 
-function check_results_from_excel() {
+function parse_data_from_excel() {
   document.getElementById("excel").value = "true";
-  console.log("Se cambio el estado del excel");
+  console.log("State of excel changed");
 }

@@ -18,8 +18,8 @@ def read_excel(file, index_leaf):
     return array
 
 
-def get_values_from_excel(file, index_leaf):
-    excel_list = read_excel(file, index_leaf)
+def get_values_from_excel(index_leaf):
+    excel_list = read_excel('input.xls', index_leaf)
 
     try:
         if index_leaf == 0:  # N
@@ -90,4 +90,17 @@ def parse_variable(excel_list):
         print("This variable dont exist")
 
 
-#print(get_values_from_excel("../input.xls", 3))
+def write_output(n, a, b, l, variable, vars_q, vars_t):
+    with open('output.txt', mode="a") as file:
+        file.write("N: " + f'{n}'+'\n')
+        file.write("A: " + f'{a}'+'\n')
+        file.write("B: " + f'{b}'+'\n')
+        file.write("L: " + f'{l}'+'\n')
+        file.write("Variable: " + f'{variable}'+'\n')
+        file.write("Vars Q " + f'{vars_q}'+'\n')
+        file.write("Vars T " + f'{vars_t}'+'\n')
+        file.write('\n')
+        file.write(
+            "__________________________________________________________________________________________________________________________"'\n')
+        file.write('\n')
+        file.close()

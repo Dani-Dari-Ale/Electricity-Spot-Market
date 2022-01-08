@@ -3,25 +3,30 @@
     <head>
         <meta charset="UTF-8">
         <title> ESM</title>
-        <link rel="stylesheet" href="{{url_for('static', filename='css/main2.css')}}">
+        
+        <link rel="stylesheet" href="{{url_for('static', filename='css/main.css')}}">
+
         <link rel="stylesheet" href="{{url_for('static', filename='css/bootstrap.min.css')}}">
         <link rel="shortcut icon" href="{{url_for('static', filename='images/1.ico')}}">
+
+
     </head>
-    <body background="{{url_for('static', filename='images/1.jpg')}}">
-      <header>
-        <div class="header">
-          <a href="#" class="logo">Index</a>
-          <div class="header-right">
-              <form action="/" method="get"><a href="/">Home</a></form>
-              <form action="/index" method="get"><a class="active" href="/index">Index</a></form>
-              <form action="/about" method="get"><a href="/about">About</a></form>
-          </div>
-        </div> 
-      </header>
-        <div class="all">
-          
+    <body style="background-image: url(../static/images/1.jpg)">
+        <header>
+          <div class="header">
+            <a href="#" class="logo">Index</a>
+            <div class="header-right">
+                <form action="/" method="get"><a href="/">Home</a></form>
+                <form action="/index" method="get"><a class="active" href="/index">Index</a></form>
+                <form action="/about" method="get"><a href="/about">About</a></form>
+            </div>
+          </div> 
+        </header>
+
+        
+      <div class="item active testing-caption">
           <form action="/index" method="POST" class="form">
-              <input type="number"  required="true" min="1" id="n" name="n" placeholder="N" /> N <br />
+              <input type="number"  required="true" min="1" id="n" name="n" placeholder="N" /><br />
               
               <input type="text" hidden id="excel1" name="excel" value="false" /> <br />
               <input type="button" id="btn_create" value="Create matrix" onclick="create()"/> <br />
@@ -30,23 +35,27 @@
               <div id="b_matrix" required="true"></div> <br />
               <div id="l_matrix" required="true"></div> <br />
 
+              <input type="text" hidden id="created_matrix" name="created_matrix" value="false" /> <br />
+              <input type="text" hidden id="scenarie_val" name="scenarie_val" value="false" /> <br />
+
+
               <label for="variable">Choose a variable:</label>
               <select name="variable" id="variable" value="" onclick="create_params()">
-                <optgroup label="Ninguna">
-                  <option value="none">ninguna</option>
-                <optgroup label="Discreta">
+                <optgroup label="None">
+                  <option value="none">none</option>
+                <optgroup label="Discrete">
                   
-                  <option value="binary">binomial</option>
-                  <option value="geometric">geometrica</option>
+                  <option value="binary">binary</option>
+                  <option value="geometric">geometric</option>
                 </optgroup>
                 <optgroup label="Continua">
-                  <option value="uniform">uniforme</option>
-                  <option value="exponential">exponencial</option>
+                  <option value="uniform">uniform</option>
+                  <option value="exponential">exponential</option>
                   <option value="gamma">gamma</option>
                   <option value="normal">normal</option>
                 </optgroup>
-                <optgroup label="Escenario">
-                  <option value="scenaries">escenario
+                <optgroup label="Scenaries">
+                  <option value="scenaries">scenaries
                   </option>
                 </optgroup>
               </select>
@@ -54,25 +63,20 @@
               <div id="params"></div> <br />
               <div id="intervals"></div> <br />
               
-              <button type="submit" class="formsubmit" onclick="check_results(event)">
+              <button type="submit" style="background-color: #017fb5;" onclick="parse_data(event)">
                 Get results
               </button>
-              
-              
-
           </form>
           
-        </div>
-        <form action="/index" method="POST" class="form">
-          <input type="text" hidden id="excel" name="excel" value="false" /> <br />
-          <button type="submit" class="formsubmit" onclick="check_results_from_excel()">
-            Get results from excel
-          </button>
-        </form>
-
-      <script src="{{url_for('static', filename='js/bootstrap.bundle.min.js')}}"></script>
+          <form action="/index" method="POST" class="form">
+            <input type="text" hidden id="excel" name="excel" value="false" /> <br />
+            <button type="submit" style="background-color: rgb(28, 141, 34);" onclick="parse_data_from_excel()">
+              Get results from excel
+            </button>
+          </form>
+      </div>
+    
       <script src="{{url_for('static', filename='js/file.js')}}"></script>
-
     </body>
 
 </html>

@@ -3,7 +3,7 @@
     <head>
         <meta charset="UTF-8">
         <title> ESM</title>
-        <link rel="stylesheet" href="{{url_for('static', filename='css/main2.css')}}">
+        <link rel="stylesheet" href="{{url_for('static', filename='css/main.css')}}">
         <link rel="stylesheet" href="{{url_for('static', filename='css/bootstrap.min.css')}}">
         <link rel="shortcut icon" href="{{url_for('static', filename='images/1.ico')}}">
 
@@ -21,18 +21,21 @@
         </div> 
       </header>
         
+      <div class="item active testing-caption">
         <div class="form">
                 <div id="n">
-                    <h4>N: {{n}}</h4>
+                    <h2>N: {{n}}</h2>
                 </div>  <br />
+                <div id="demands">
+                  <h2>Variable: {{variable}}</h2>
+                </div> <br />
 
               <div id="a_matrix" ></div>  <br />
               <div id="b_matrix" ></div> <br />
               <div id="l_matrix"></div> <br />
 
-              
-              <div id="demands">
-                <h4>Variable: {{variable}}</h4>
+              <div >
+                <h2>Results</h2>
               </div> <br />
               
               <div id="results_q"></div> <br />
@@ -41,6 +44,7 @@
 
        
         </div>
+      </div>
       <script src="{{url_for('static', filename='js/bootstrap.bundle.min.js')}}"></script>
       <script src="{{url_for('static', filename='js/file.js')}}"></script>
       <script>
