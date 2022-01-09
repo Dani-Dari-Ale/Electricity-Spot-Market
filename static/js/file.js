@@ -78,9 +78,9 @@ function create_params() {
     document.getElementById("params").innerHTML = params;
   } else if (variable == "scenaries") {
     params =
-      '<input type="text" required="true" size="1" placeholder="intervals" id="n_intervals" name="n_intervals">';
+      '<input type="text" required="true" size="13" placeholder="number of sceneries" id="n_intervals" name="n_intervals">';
     params +=
-      '<input type="button" required="true" id="btn_create_intervals" value="create intervals" onclick="create_intervals(event)"/>';
+      '<input type="button" required="true" id="btn_create_intervals" value="create sceneries" onclick="create_intervals(event)"/>';
     document.getElementById("params").innerHTML = params;
   }
 }
@@ -92,7 +92,7 @@ function create_intervals(event) {
     alert("Shoose a number bigger than 0 for intervals");
     return false;
   }
-  create_matrix(2, n_intervals, "intervals");
+  create_matrix(2, n_intervals, "type demand in first line and probability in the second one");
   document.getElementById("scenarie_val").value = true;
 }
 
