@@ -36,7 +36,7 @@
               <div id="l_matrix" required="true"></div> <br />
 
               <input type="text" hidden id="created_matrix" name="created_matrix" value="false" /> <br />
-              <input type="text" hidden id="scenarie_val" name="scenarie_val" value="false" /> <br />
+              <input type="text" hidden id="scenario_val" name="scenario_val" value="false" /> <br />
 
 
               <label for="variable">Choose a distribution for demand:</label>
@@ -54,16 +54,16 @@
                   <option value="gamma">gamma</option>
                   <option value="normal">normal</option>
                 </optgroup>
-                <optgroup label="Sceneries">
-                  <option value="scenaries">sceneries
+                <optgroup label="Scenarios">
+                  <option value="scenarios">Scenarios
                   </option>
                 </optgroup>
               </select>
               
               <div id="params"></div> <br />
-              <div id="type demand in first line and probability in the second one"></div> <br />
+              <div class="form" id="scenarios"></div> <br />
               
-              <button type="submit" style="background-color: #017fb5;" onclick="parse_data(event)">
+              <button type="submit" style="background-color: #aab0b3;" onclick="parse_data(event)">
                 Get results
               </button>
           </form>

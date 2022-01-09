@@ -39,14 +39,14 @@ def create_demand(request, variable):
     elif variable == 'exponential' or variable == 'geometric':
         params.append(float(request.form['params0']))
 
-    elif variable == 'scenaries':
-        n_intervals = int(request.form['n_intervals'])
+    elif variable == 'scenarios':
+        n_scenarios = int(request.form['n_scenarios'])
 
         params1 = []
         params2 = []
-        for col in range(n_intervals):
-            params1.append(float(request.form[f'intervals{0}{col}']))
-            params2.append(float(request.form[f'intervals{1}{col}']))
+        for col in range(n_scenarios):
+            params1.append(float(request.form[f'scenarios{0}{col}']))
+            params2.append(float(request.form[f'scenarios{1}{col}']))
 
         params.append(params1)
         params.append(params2)
@@ -60,7 +60,7 @@ def create_demand(request, variable):
 def create_demand_excel(variable, params1, params2):
     params = []
 
-    if variable == 'uniform' or variable == 'gamma' or variable == 'normal' or variable == 'binary' or variable == 'scenaries':
+    if variable == 'uniform' or variable == 'gamma' or variable == 'normal' or variable == 'binary' or variable == 'scenarios':
         params.append(params1)
         params.append(params2)
 

@@ -27,6 +27,8 @@ def index():
 
         if request.form['excel'] == 'false':
 
+            print(request.form)
+
             n, l, a, b, variable = find_val_to_model(request)
 
             params = create_demand(request, variable)
@@ -63,4 +65,4 @@ if __name__ == '__main__':
     webbrowser.open(f'http://{_host}:{_port}', new=2)
 
     # el debug en true es para poder recargar los cambios
-    app.run(host=_host, port=_port, debug=False)
+    app.run(host=_host, port=_port, debug=True)
