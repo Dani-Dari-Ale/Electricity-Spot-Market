@@ -150,7 +150,7 @@ donde m es la estructura $GEKKO$ que representa el modelo.
 
 
 
-En los métodos $assignVar\_q$ y $assignVar\_t$ se crean las variables a evaluar y se colocan en listados. Estas variables se crean con el método $m.Var$ y se van guardando en el listado correspondiente. Al finalizar se devuelve dicho listado. (Nótese que en $assignVar\_t$ se utiliza un listado de listas xq se está trabajando con una matriz bidimensional)
+En los métodos $assignVar\_q$ y $assignVar\_t$ se crean las variables a evaluar y se colocan en listados. Estas variables se crean con el método $m.Var$ y se van guardando en el listado correspondiente. Al finalizar se devuelve dicho listado. (Nótese que en $assignVar\_t$ se utiliza un listado de listas porque se está trabajando con una matriz bidimensional)
 
 <img src="C:\Users\reynel\Downloads\4to_dos_semestre\Modelos de Optimizacion II\InformeFotos\listasConVariables.png" alt="listasConVariables" style="zoom:50%;" />
 
@@ -178,7 +178,7 @@ Es la presentación de la app, si desea cambiar la presentación puede cambiarla
 
 ##### index.html
 
-A continuación pasaremos a explicar como está distribuido el $html$ usando $flask$ por si se desea hacer algún cambio sobre este se entienda como afecta a la aplicación.
+A continuación pasaremos a explicar como está distribuido el $html$ usando $flask$, por si se desea hacer algún cambio sobre este, se entienda como afecta a la aplicación.
 
 Primero se muestra un $texbox$ para números donde se coloca la cantidad de nodos del problema y un botón Create matrix que genera una matriz a partir de la cantidad de nodos que se insertan. A continuación podemos ver como se ve en el navegador y el código correspondiente
 
@@ -200,13 +200,13 @@ Luego tenemos la selección de variable y su respectivo código en $html$. Esta 
 
 
 
-<img src="C:\Users\reynel\AppData\Roaming\Typora\typora-user-images\image-20220108233953463.png" alt="image-20220108233953463" style="zoom:50%;" />
+<img src="C:\Users\reynel\AppData\Roaming\Typora\typora-user-images\image-20220110004051332.png" alt="image-20220110004051332" style="zoom:50%;" />
 
 <img src="C:\Users\reynel\AppData\Roaming\Typora\typora-user-images\image-20220108234016500.png" alt="image-20220108234016500" style="zoom:50%;" />
 
 
 
-<img src="C:\Users\reynel\AppData\Roaming\Typora\typora-user-images\image-20220108233922808.png" alt="image-20220108233922808" style="zoom:50%;" />
+<img src="C:\Users\reynel\AppData\Roaming\Typora\typora-user-images\image-20220110004205078.png" alt="image-20220110004205078" style="zoom:50%;" />
 
 
 
