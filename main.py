@@ -65,4 +65,4 @@ if __name__ == '__main__':
     webbrowser.open(f'http://{_host}:{_port}', new=2)
 
     # el debug en true es para poder recargar los cambios
-    app.run(host=_host, port=_port, debug=True)
+    app.run(host=_host, port=_port, debug=False)
