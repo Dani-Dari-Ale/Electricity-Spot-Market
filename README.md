@@ -19,8 +19,8 @@ $ python3 main.py
 
 -Lo primero que debemos hacer es instalar pyinstaller con pip3 install
 -Para crear el ejecutable hacemos lo siguiente:
-	-Linux: pyinstaller -F -i 1.ico --add-data "templates:templates" --add-data "static:static" main.py
-	-Windows: pyinstaller -F -i 1.ico --add-data "templates;templates" --add-data "static;static" main.py
+	-Linux: pyinstaller -F -i ./1.ico --add-data "templates:templates" --add-data "static:static" main.py
+	-Windows: pyinstaller -F -i ./1.ico --add-data "templates;templates" --add-data "static;static" main.py
 
 -Luego debemos modificar el archivo main.spec:
 	- Agregamos lo siguiente para poder trabajar con gekko:
