@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title> ESM</title>
+        <link rel="stylesheet" href="{{url_for('static', filename='css/main.css')}}">
+        <link rel="stylesheet" href="{{url_for('static', filename='css/bootstrap.min.css')}}">
+        <link rel="shortcut icon" href="{{url_for('static', filename='images/1.ico')}}">
+
+        
+    </head>
+    <body background="{{url_for('static', filename='images/1.jpg')}}">
+      <header>
+        <div class="header">
+          <a href="#" class="logo">Results</a>
+          <div class="header-right">
+              <form action="/" method="get"><a href="/">Home</a></form>
+              <form action="/index" method="get"><a href="/index">Index</a></form>
+              <form action="/about" method="get"><a href="/about">About</a></form>
+          </div>
+        </div> 
+      </header>
+        
+      <div class="item active testing-caption">
+        <div class="form-result">
+                <div id="n">
+                    <h2>N: {{n}}</h2>
+                </div>  <br />
+                <div id="demands">
+                  <h2>Variable: {{variable}}</h2>
+                </div> <br />
+
+              <div id="a_matrix" ></div>  <br />
+              <div id="b_matrix" ></div> <br />
+              <div id="l_matrix"></div> <br />
+
+              <div >
+                <h2>Results</h2>
+              </div> <br />
+              
+              <div id="results_q"></div> <br />
+              
+              <div id="results_t"></div> <br />
+
+       
+        </div>
+      </div>
+      <script src="{{url_for('static', filename='js/bootstrap.bundle.min.js')}}"></script>
+      <script src="{{url_for('static', filename='js/file.js')}}"></script>
+      <script>
+        var n = {{n}}
+        var a = {{a}}
+        var b = {{b}}
+        var l = {{l}}
+
+        var vars_q = {{vars_q}}
+        var vars_t = {{vars_t}}
+        
+        show_results(n,a,b,l);
+
+        function show_results(n, a, b, l) {
+           
+            draw_matrix("a_matrix", a, 1, n);
+            draw_matrix("b_matrix", b, 1, n);
+            draw_matrix("l_matrix", l, n, n);
+            
+            
+            if(vars_q.length == 0 || vars_t.length == 0){
+              document.getElementById("results_q").innerHTML = "<h3> results_q: Undefined </h3>";
+              document.getElementById("results_t").innerHTML = "<h3> results_t: Undefined </h3>";
+            }
+            else{
+              draw_matrix("results_q", vars_q, 1, n);
+              draw_matrix("results_t", vars_t, n, n);
+            }
+            
+          }
+
+        function draw_matrix(matrix_name, matrix, row, col) {
+          var table = '<table border="0">';
+          table += matrix_name;
+          for (i = 0; i < row; i++) {
+            table += "<tr>";
+            var list;
+            if(row ==1) list = matrix;
+            else list = matrix[i]
+
+            for (j = 0; j < col; j++) {
+              table += "<td>" + '<input type="text" readonly value="'+ list[j] + '" size="10">' + "</td>";
+            }
+            table += "</tr>";
+            
+          }
+          table += "</table>";
+          
+          document.getElementById(matrix_name).innerHTML = table;
+        }
+      </script>
+    </body>
+
+</html>
