@@ -1,4 +1,6 @@
 from enum import Enum
+
+from pytest import Instance
 from utils.random_variables import *
 
 
@@ -34,10 +36,9 @@ def demand(_distribution, params, N):
         dist = geometric(params[0])
 
     else:
+        # LOS PARAMETROS DE ESCENARIO AHORA SON UNA LISTA DE LISTA DE DEMANDAS Y UNA LISTA DE PROBABILIDADES
         dist = scenarios(params[0], params[1])
-
-    demands = []
-    for _ in range(N):
-        demands.append(dist.get())
-
-    return demands
+    
+    # se construye la lista de demandas si la distribucion no es por escenarios
+    # en caso contrario se devuelve la lista de demandas seleccionada segun las probabilidades
+    return [dist.get() for _ in range(N)] if not isinstance(dist,scenarios) else dist.get()
