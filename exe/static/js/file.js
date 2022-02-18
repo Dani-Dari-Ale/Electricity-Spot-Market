@@ -31,14 +31,25 @@ function create_matrix(row, col, matrix_name) {
     table += "<tr>";
     table += "<td>" + (i + 1) + "</td>";
     for (j = 0; j < col; j++) {
-      table +=
-        "<td>" +
-        '<input type="text" required="true" value="-1" size="1" name="' +
-        matrix_name +
-        i +
-        j +
-        '">' +
-        "</td>";
+      if (i == j && matrix_name == "l_matrix") {
+        table +=
+          "<td>" +
+          '<input type="text" required="true" readonly value="-1" size="1" name="' +
+          matrix_name +
+          i +
+          j +
+          '">' +
+          "</td>";
+      } else {
+        table +=
+          "<td>" +
+          '<input type="text" required="true" value="-1" size="1" name="' +
+          matrix_name +
+          i +
+          j +
+          '">' +
+          "</td>";
+      }
     }
     table += "</tr>";
   }

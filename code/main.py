@@ -7,7 +7,7 @@ import webbrowser
 
 # VARIABLES
 _host = 'localhost'
-_port = 4001
+_port = 3000
 
 
 # APP
