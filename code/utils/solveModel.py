@@ -90,10 +90,10 @@ def solutionType(n, l, a, b, d):
                 L_positive = False
 
     if L_positive:
-        result += "Optimum solution for vectors q and t"
+        result += "Optimal solution reached for vectors q and t"
 
     elif b_positive:
-        result += "Optimum solution for vector q and vector t may be unbounded optimum"
+        result += "Optimal solution reached for vector q and vector t may be unbounded optimum"
     else:
         result += "May be unbounded optimum for vectors q and t"
 
@@ -101,4 +101,4 @@ def solutionType(n, l, a, b, d):
 
 
 def no_solution():
-    return ("No solution in Model")
+    return ("Infeasible solution")
