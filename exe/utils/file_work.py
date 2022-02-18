@@ -80,9 +80,27 @@ def parse_variable(excel_list):
 
         return variable, p, 0
 
-    elif variable == 'scenaries':
-        d = excel_list[1]
-        p = excel_list[2]
+    elif variable == 'scenarios':
+        numb_scen = len(excel_list) - 1
+        print(numb_scen)
+        n = len(excel_list[1])
+
+        list_scen = []
+        for i in range(1, numb_scen+1):
+            list_scen.append(excel_list[i])
+
+        print(list_scen)
+        d = []
+        p = []
+
+        for i in range(numb_scen):
+            list_line_d = []
+            for j in range(n):
+                if j == n-1:
+                    p.append(list_scen[i][j])
+                else:
+                    list_line_d.append(list_scen[i][j])
+            d.append(list_line_d)
 
         return variable, d, p
 
@@ -90,15 +108,17 @@ def parse_variable(excel_list):
         print("This variable dont exist")
 
 
-def write_output(n, a, b, l, variable, vars_q, vars_t):
+def write_output(n, a, b, l, variable, d, vars_q, vars_t, sol_string):
     with open('output.txt', mode="a") as file:
         file.write("N: " + f'{n}'+'\n')
         file.write("A: " + f'{a}'+'\n')
         file.write("B: " + f'{b}'+'\n')
         file.write("L: " + f'{l}'+'\n')
         file.write("Variable: " + f'{variable}'+'\n')
+        file.write("D: " + f'{d}'+'\n')
         file.write("Vars Q " + f'{vars_q}'+'\n')
         file.write("Vars T " + f'{vars_t}'+'\n')
+        file.write("Sol: " + f'{sol_string}'+'\n')
         file.write('\n')
         file.write(
             "__________________________________________________________________________________________________________________________"'\n')

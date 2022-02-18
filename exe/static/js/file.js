@@ -15,7 +15,7 @@ function create() {
 function create_matrix(row, col, matrix_name) {
   var head;
   if (matrix_name == "scenarios")
-    head = "type demand in first line and probability in the second one";
+    head = "type demands in first N celds and probability in the N+1 celd";
   else head = matrix_name;
 
   var table = '<table border="0">';
@@ -37,6 +37,38 @@ function create_matrix(row, col, matrix_name) {
         matrix_name +
         i +
         j +
+        '">' +
+        "</td>";
+    }
+    table += "</tr>";
+  }
+  table += "</table>";
+  document.getElementById(matrix_name).innerHTML = table;
+}
+
+function create_matrix_demands(matrix_name, row, col, param1, param2) {
+  var head;
+  if (matrix_name == "scenarios")
+    head = "type demands in first N celds and probability in the N+1 celd";
+  else head = matrix_name;
+
+  var table = '<table border="0">';
+
+  table += head;
+
+  for (i = 0; i < row; i++) {
+    table += "<tr>";
+
+    for (j = 0; j < col; j++) {
+      var placeholder = "";
+      if (j == col - 1) placeholder = param2 + (i + 1);
+      else placeholder = param1 + (i + 1) + (j + 1);
+      table +=
+        "<td>" +
+        '<input type="text" required="true" size="1" placeholder="' +
+        placeholder +
+        '" name="' +
+        placeholder +
         '">' +
         "</td>";
     }
@@ -110,14 +142,26 @@ function create_params() {
 
 function create_scenarios(event) {
   var n_scenarios = document.getElementById("n_scenarios").value;
+  var n = document.getElementById("n").value;
 
   if (n_scenarios == "") {
     event.preventDefault();
     alert("Shoose a number bigger than 0 for scenarios");
     return false;
   }
+  if (n == "") {
+    event.preventDefault();
+    alert("Shoose N bigger than 0");
+    return false;
+  }
 
-  create_matrix(2, n_scenarios, "scenarios");
+  create_matrix_demands(
+    "scenarios",
+    parseInt(n_scenarios),
+    parseInt(n) + 1,
+    "d",
+    "p"
+  );
   document.getElementById("scenario_val").value = true;
 }
 

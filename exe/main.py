@@ -29,11 +29,16 @@ def index():
 
             n, l, a, b, variable = find_val_to_model(request)
 
-            params = create_demand(request, variable)
+            params = create_params(request, variable)
+            msg = parse_probs(variable, params)
+            if msg == "ok":
+                vars_q, vars_t, d, sol_string = get_results(
+                    n, a, b, l, variable, params)
 
-            vars_q, vars_t = get_results(n, a, b, l, variable, params)
-            return render_template('results.html', vars_q=vars_q, vars_t=vars_t, n=n, l=l, a=a, b=b, variable=variable)
+                return render_template('results.html', vars_q=vars_q, vars_t=vars_t, n=n, l=l, a=a, b=b, variable=variable, d=d, sol_string=sol_string)
 
+            else:
+                return render_template('error.html', msg=msg)
         else:
 
             n = int(get_values_from_excel(0))
@@ -41,10 +46,17 @@ def index():
             l = get_values_from_excel(2)
             variable, params1, params2 = get_values_from_excel(3)
 
-            params = create_demand_excel(variable, params1, params2)
+            params = create_params_excel(variable, params1, params2)
 
-            vars_q, vars_t = get_results(n, a, b, l, variable, params)
-            return render_template('results.html', vars_q=vars_q, vars_t=vars_t, n=n, l=l, a=a, b=b, variable=variable)
+            msg = parse_probs(variable, params)
+            if msg == "ok":
+                vars_q, vars_t, d, sol_string = get_results(
+                    n, a, b, l, variable, params)
+
+                return render_template('results.html', vars_q=vars_q, vars_t=vars_t, n=n, l=l, a=a, b=b, variable=variable, d=d, sol_string=sol_string)
+
+            else:
+                return render_template('error.html', msg=msg)
 
     return render_template('index.html')
 

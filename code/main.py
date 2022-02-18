@@ -38,7 +38,7 @@ def index():
                 return render_template('results.html', vars_q=vars_q, vars_t=vars_t, n=n, l=l, a=a, b=b, variable=variable, d=d, sol_string=sol_string)
 
             else:
-                return render_template(msg), 404
+                return render_template('error.html', msg=msg)
         else:
 
             n = int(get_values_from_excel(0))
@@ -56,7 +56,7 @@ def index():
                 return render_template('results.html', vars_q=vars_q, vars_t=vars_t, n=n, l=l, a=a, b=b, variable=variable, d=d, sol_string=sol_string)
 
             else:
-                return render_template(msg), 404
+                return render_template('error.html', msg=msg)
 
     return render_template('index.html')
 
@@ -75,4 +75,4 @@ if __name__ == '__main__':
     webbrowser.open(f'http://{_host}:{_port}', new=2)
 
     # el debug en true es para poder recargar los cambios
-    app.run(host=_host, port=_port, debug=True)
+    app.run(host=_host, port=_port, debug=False)
