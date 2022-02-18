@@ -26,10 +26,11 @@
                 <div id="n">
                     <h2>N: {{n}}</h2>
                 </div>  <br />
-                <div id="demands">
+                <div id="variable">
                   <h2>Variable: {{variable}}</h2>
                 </div> <br />
-
+              
+              <div id="d_matrix" ></div>  <br />
               <div id="a_matrix" ></div>  <br />
               <div id="b_matrix" ></div> <br />
               <div id="l_matrix"></div> <br />
@@ -41,14 +42,17 @@
               <div id="results_q"></div> <br />
               
               <div id="results_t"></div> <br />
-
-       
+              
+              <div >
+                <h3>{{sol_string}}</h2>
+              </div> <br />
         </div>
       </div>
       <script src="{{url_for('static', filename='js/bootstrap.bundle.min.js')}}"></script>
       <script src="{{url_for('static', filename='js/file.js')}}"></script>
       <script>
         var n = {{n}}
+        var d ={{d}}
         var a = {{a}}
         var b = {{b}}
         var l = {{l}}
@@ -56,10 +60,11 @@
         var vars_q = {{vars_q}}
         var vars_t = {{vars_t}}
         
-        show_results(n,a,b,l);
+        show_results(n,a,b,l, d);
 
-        function show_results(n, a, b, l) {
-           
+        function show_results(n, a, b, l, d) {
+
+            draw_matrix("d_matrix", d, 1, n);
             draw_matrix("a_matrix", a, 1, n);
             draw_matrix("b_matrix", b, 1, n);
             draw_matrix("l_matrix", l, n, n);

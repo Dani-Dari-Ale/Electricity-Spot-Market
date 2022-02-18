@@ -1,5 +1,5 @@
 from utils.demand import demand
-from utils.solveModel import solveModel
+from utils.solveModel import solveModel, no_solution, solutionType
 from utils.file_work import write_output
 
 
@@ -29,7 +29,7 @@ def find_val_to_model(request):
     return n_int, l, a, b, variable
 
 
-def create_demand(request, variable):
+def create_params(request, variable):
     params = []
 
     if variable == 'uniform' or variable == 'gamma' or variable == 'normal' or variable == 'binary':
@@ -41,12 +41,18 @@ def create_demand(request, variable):
 
     elif variable == 'scenarios':
         n_scenarios = int(request.form['n_scenarios'])
+        n = int(request.form['n'])
 
         params1 = []
         params2 = []
-        for col in range(n_scenarios):
-            params1.append(float(request.form[f'scenarios{0}{col}']))
-            params2.append(float(request.form[f'scenarios{1}{col}']))
+        for i in range(n_scenarios):
+            params1_aux = []
+            for j in range(n):
+                params1_aux.append(float(request.form[f'd{i+1}{j+1}']))
+            params1.append(params1_aux)
+
+        for k in range(n_scenarios):
+            params2.append(float(request.form[f'p{k+1}']))
 
         params.append(params1)
         params.append(params2)
@@ -57,7 +63,7 @@ def create_demand(request, variable):
     return params
 
 
-def create_demand_excel(variable, params1, params2):
+def create_params_excel(variable, params1, params2):
     params = []
 
     if variable == 'uniform' or variable == 'gamma' or variable == 'normal' or variable == 'binary' or variable == 'scenarios':
@@ -78,10 +84,59 @@ def get_results(n, a, b, l, variable, params):
 
     try:
         vars_q, vars_t = solveModel(n, l, a, b, d)
+
+        solutionString = solutionType(n, l, a, b, d)
     except:
         vars_q = []
         vars_t = []
+        solutionString = no_solution()
 
-    write_output(n, a, b, l, variable, vars_q, vars_t)
+    write_output(n, a, b, l, variable, d, vars_q, vars_t, solutionString)
 
-    return vars_q, vars_t
+    return vars_q, vars_t, d, solutionString
+
+
+def parse_probs(variable, params):
+    msg = "ok"
+
+    # Discrete
+    if variable == 'geometric':
+        if params[0] < 0 or params[0] > 1:
+            msg = "p must be between 0 and 1"
+
+    elif variable == 'binary':
+        if params[0] < 0:
+            msg = "n must be bigger than 0"
+        if params[1] < 0 or params[1] > 1:
+            msg = "p must be between 0 and 1"
+
+    # Continua
+    elif variable == 'uniform':
+        if params[0] > params[1]:
+            msg = "a must be bigger than b"
+
+    elif variable == 'gamma':
+        if params[1] < 0:
+            msg = "lambda must be bigger than 0"
+
+    elif variable == 'normal':
+        if params[1] < 0:
+            "O^2 must be bigger than 0"
+
+    elif variable == 'exponential':
+        msg = "ok"
+
+    # Scenarios
+    elif variable == 'scenarios':
+        sum_probs = 0
+        for prob in params[1]:
+            sum_probs += prob
+            if prob < 0 or prob > 1:
+                msg = "p must be between 0 and 1"
+        if sum_probs != 1:
+            msg = "Probabilities must add up to 1"
+
+    else:
+        msg = "This variable type dont exist"
+
+    return msg
