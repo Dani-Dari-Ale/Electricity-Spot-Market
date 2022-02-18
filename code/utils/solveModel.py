@@ -86,7 +86,7 @@ def solutionType(n, l, a, b, d):
             b_positive = False
     for i_axis in l:
         for j_axis in i_axis:
-            if j_axis <= 0:
+            if j_axis == 0:
                 L_positive = False
 
     if L_positive:
